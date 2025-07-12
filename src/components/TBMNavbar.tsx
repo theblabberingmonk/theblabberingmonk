@@ -1,12 +1,15 @@
 
 import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import { Menu, X, Brain } from "lucide-react";
+import { Menu, X, Brain, User } from "lucide-react";
 import { Link } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
+import { User as SupabaseUser } from "@supabase/supabase-js";
 
 const TBMNavbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [user, setUser] = useState<SupabaseUser | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,6 +18,18 @@ const TBMNavbar = () => {
     
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      setUser(session?.user ?? null);
+    });
+
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+    });
+
+    return () => subscription.unsubscribe();
   }, []);
 
   const toggleMenu = () => {
@@ -54,11 +69,20 @@ const TBMNavbar = () => {
           <span className="text-xl font-bold text-gray-900">TBM Labs</span>
         </Link>
 
-        <nav className="hidden md:flex space-x-8">
+        <nav className="hidden md:flex space-x-8 items-center">
           <Link to="/" className="nav-link">Home</Link>
           <Link to="/blog" className="nav-link">Blog</Link>
           <a href="#tools" className="nav-link">Tools</a>
-          <a href="#contact" className="nav-link">Contact</a>
+          {user ? (
+            <Link to="/dashboard" className="nav-link flex items-center">
+              <User className="w-4 h-4 mr-1" />
+              Dashboard
+            </Link>
+          ) : (
+            <Link to="/auth" className="button-primary text-sm">
+              Sign In
+            </Link>
+          )}
         </nav>
 
         <button 
@@ -105,16 +129,29 @@ const TBMNavbar = () => {
           >
             Tools
           </a>
-          <a 
-            href="#contact" 
-            className="text-xl font-medium py-3 px-6 w-full text-center rounded-lg hover:bg-gray-100" 
-            onClick={() => {
-              setIsMenuOpen(false);
-              document.body.style.overflow = '';
-            }}
-          >
-            Contact
-          </a>
+          {user ? (
+            <Link 
+              to="/dashboard" 
+              className="text-xl font-medium py-3 px-6 w-full text-center rounded-lg hover:bg-gray-100" 
+              onClick={() => {
+                setIsMenuOpen(false);
+                document.body.style.overflow = '';
+              }}
+            >
+              Dashboard
+            </Link>
+          ) : (
+            <Link 
+              to="/auth" 
+              className="button-primary text-center w-full max-w-xs" 
+              onClick={() => {
+                setIsMenuOpen(false);
+                document.body.style.overflow = '';
+              }}
+            >
+              Sign In
+            </Link>
+          )}
         </nav>
       </div>
     </header>

@@ -1,7 +1,8 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
-import { ArrowRight, Brain } from "lucide-react";
+import { ArrowRight, Brain, UserPlus } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const TBMHero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -36,7 +37,7 @@ const TBMHero = () => {
               style={{ animationDelay: "0.1s" }}
             >
               <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-tbm-500 text-white mr-2">AI</span>
-              <span>Privacy First</span>
+              <span>Secure & Private</span>
             </div>
             
             <h1 
@@ -51,25 +52,26 @@ const TBMHero = () => {
               style={{ animationDelay: "0.5s" }} 
               className="section-subtitle mt-3 sm:mt-6 mb-4 sm:mb-8 leading-relaxed opacity-0 animate-fade-in text-gray-700 font-normal text-base sm:text-lg text-left"
             >
-              A suite of one-click, bring-your-own-key AI tools designed for privacy, learning, and fun. No data stored, no logins required.
+              Create an account to access our suite of AI tools, track your learning progress, and securely store your API keys. Build, learn, and grow with our privacy-first platform.
             </p>
             
             <div 
               className="flex flex-col sm:flex-row gap-4 opacity-0 animate-fade-in" 
               style={{ animationDelay: "0.7s" }}
             >
-              <a 
-                href="#tools" 
+              <Link 
+                to="/auth"
                 className="button-primary flex items-center justify-center group w-full sm:w-auto text-center"
               >
-                Explore Tools
+                <UserPlus className="mr-2 w-4 h-4" />
+                Get Started Free
                 <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </a>
+              </Link>
               <a 
-                href="/blog" 
+                href="#tools" 
                 className="button-secondary w-full sm:w-auto text-center"
               >
-                Learn LLMs
+                Explore Tools
               </a>
             </div>
           </div>

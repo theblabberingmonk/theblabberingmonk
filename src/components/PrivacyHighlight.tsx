@@ -1,28 +1,28 @@
 
 import React from "react";
-import { Shield, Key, Trash2, Lock } from "lucide-react";
+import { Shield, Key, BookOpen, Lock } from "lucide-react";
 
 const PrivacyHighlight = () => {
   const features = [
     {
       icon: Shield,
       title: "Privacy First",
-      description: "Your data never leaves your browser session"
+      description: "Your API keys and data are encrypted and secure"
     },
     {
       icon: Key,
       title: "Bring Your Own Key",
-      description: "Use your own OpenAI, Gemini, or other API keys"
+      description: "Store your API keys securely for seamless access"
     },
     {
-      icon: Trash2,
-      title: "No Data Storage",
-      description: "We don't save your inputs, outputs, or API keys"
+      icon: BookOpen,
+      title: "Progress Tracking",
+      description: "We save your learning progress across all tracks"
     },
     {
       icon: Lock,
-      title: "One-Time Sessions",
-      description: "Each session is independent and secure"
+      title: "Secure Storage",
+      description: "Your data is encrypted and only accessible to you"
     }
   ];
 
@@ -34,10 +34,10 @@ const PrivacyHighlight = () => {
             <span>Security & Privacy</span>
           </div>
           <h2 className="section-title mb-6">
-            Your Data is <span className="text-tbm-500">Yours</span>
+            Your Journey is <span className="text-tbm-500">Yours</span>
           </h2>
           <p className="section-subtitle mx-auto">
-            We believe in absolute privacy. That's why we built TBM Labs with a zero-data-retention philosophy.
+            Create an account to unlock the full power of TBM Labs. Your API keys, progress, and preferences are stored securely.
           </p>
         </div>
 
@@ -69,18 +69,18 @@ const PrivacyHighlight = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
               <div className="space-y-2">
                 <div className="w-8 h-8 bg-tbm-500 text-white rounded-full flex items-center justify-center text-sm font-bold">1</div>
-                <h4 className="font-semibold text-gray-900">Enter Your API Key</h4>
-                <p className="text-gray-600 text-sm">Paste your API key securely in your browser</p>
+                <h4 className="font-semibold text-gray-900">Create Account</h4>
+                <p className="text-gray-600 text-sm">Sign up to unlock all features and track progress</p>
               </div>
               <div className="space-y-2">
                 <div className="w-8 h-8 bg-tbm-500 text-white rounded-full flex items-center justify-center text-sm font-bold">2</div>
-                <h4 className="font-semibold text-gray-900">Use Any Tool</h4>
-                <p className="text-gray-600 text-sm">Access our suite of AI tools with your key</p>
+                <h4 className="font-semibold text-gray-900">Add Your Keys</h4>
+                <p className="text-gray-600 text-sm">Securely store your API keys for all tools</p>
               </div>
               <div className="space-y-2">
                 <div className="w-8 h-8 bg-tbm-500 text-white rounded-full flex items-center justify-center text-sm font-bold">3</div>
-                <h4 className="font-semibold text-gray-900">Session Ends</h4>
-                <p className="text-gray-600 text-sm">Close tab, everything disappears forever</p>
+                <h4 className="font-semibold text-gray-900">Start Creating</h4>
+                <p className="text-gray-600 text-sm">Access all tools and track your learning journey</p>
               </div>
             </div>
           </div>
