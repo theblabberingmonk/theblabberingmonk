@@ -4,6 +4,7 @@ import { User } from "@supabase/supabase-js";
 import { Sparkles, Zap, BookOpen, Lightbulb, Users } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 interface DashboardContentProps {
   user: User;
@@ -19,7 +20,7 @@ const DashboardContent = ({ user }: DashboardContentProps) => {
           Hi {userName}! 🎉 Hope you're doing great!
         </h1>
         <p className="text-xl text-gray-600">
-          Welcome to <span className="text-tbm-600 font-semibold">The Blabbering Mong Labs!</span>
+          Welcome to <span className="text-tbm-600 font-semibold">The Blabbering Monk Labs!</span>
         </p>
       </div>
 
@@ -38,9 +39,11 @@ const DashboardContent = ({ user }: DashboardContentProps) => {
             <p className="mb-4">
               Ready to unleash the power of AI? Jump into our collection of tools and start creating amazing things!
             </p>
-            <Button variant="secondary" className="bg-white text-tbm-600 hover:bg-gray-100">
-              Explore Tools
-            </Button>
+            <Link to="/apps">
+              <Button variant="secondary" className="bg-white text-tbm-600 hover:bg-gray-100">
+                Explore Tools
+              </Button>
+            </Link>
           </CardContent>
         </Card>
 
@@ -58,9 +61,11 @@ const DashboardContent = ({ user }: DashboardContentProps) => {
             <p className="mb-4">
               From fundamentals to advanced engineering - we've got learning paths for every level!
             </p>
-            <Button variant="secondary" className="bg-white text-purple-600 hover:bg-gray-100">
-              Start Learning
-            </Button>
+            <Link to="/track/fundamentals">
+              <Button variant="secondary" className="bg-white text-purple-600 hover:bg-gray-100">
+                Start Learning
+              </Button>
+            </Link>
           </CardContent>
         </Card>
       </div>

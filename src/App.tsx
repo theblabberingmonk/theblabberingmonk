@@ -10,6 +10,8 @@ import Dashboard from "./pages/Dashboard";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import TrackPage from "./pages/TrackPage";
+import CoursePage from "./pages/CoursePage";
+import AllApps from "./pages/AllApps";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,7 +28,9 @@ const App = () => (
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
-          <Route path="/track/:trackId" element={<TrackPage />} />
+          <Route path="/track/:trackId" element={<CoursePage />} />
+          <Route path="/apps" element={<AllApps />} />
+          <Route path="/apps/:appId" element={<AllApps />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
