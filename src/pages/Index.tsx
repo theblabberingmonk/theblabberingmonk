@@ -1,19 +1,13 @@
 
 import React, { useEffect } from "react";
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import HumanoidSection from "@/components/HumanoidSection";
-import SpecsSection from "@/components/SpecsSection";
-import DetailsSection from "@/components/DetailsSection";
-import ImageShowcaseSection from "@/components/ImageShowcaseSection";
-import Features from "@/components/Features";
-import Testimonials from "@/components/Testimonials";
-import Newsletter from "@/components/Newsletter";
-import MadeByHumans from "@/components/MadeByHumans";
-import Footer from "@/components/Footer";
+import TBMNavbar from "@/components/TBMNavbar";
+import TBMHero from "@/components/TBMHero";
+import ToolsShowcase from "@/components/ToolsShowcase";
+import PrivacyHighlight from "@/components/PrivacyHighlight";
+import TrackPreview from "@/components/TrackPreview";
+import TBMFooter from "@/components/TBMFooter";
 
 const Index = () => {
-  // Initialize intersection observer to detect when elements enter viewport
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -36,7 +30,6 @@ const Index = () => {
   }, []);
 
   useEffect(() => {
-    // This helps ensure smooth scrolling for the anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -47,7 +40,6 @@ const Index = () => {
         const targetElement = document.getElementById(targetId);
         if (!targetElement) return;
         
-        // Increased offset to account for mobile nav
         const offset = window.innerWidth < 768 ? 100 : 80;
         
         window.scrollTo({
@@ -60,19 +52,14 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
-      <Navbar />
-      <main className="space-y-4 sm:space-y-8"> {/* Reduced space on mobile */}
-        <Hero />
-        <HumanoidSection />
-        <SpecsSection />
-        <DetailsSection />
-        <ImageShowcaseSection />
-        <Features />
-        <Testimonials />
-        <Newsletter />
-        <MadeByHumans />
+      <TBMNavbar />
+      <main className="space-y-4 sm:space-y-8">
+        <TBMHero />
+        <ToolsShowcase />
+        <PrivacyHighlight />
+        <TrackPreview />
       </main>
-      <Footer />
+      <TBMFooter />
     </div>
   );
 };
