@@ -1,27 +1,30 @@
 
 import React, { useState } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Brain, Grid3X3, BookOpen, LogOut, Settings, Lightbulb, Users, ChevronDown, ChevronRight, Bot, FileText, Calculator, MessageSquare } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import { useClerk } from "@clerk/clerk-react";
 import { useToast } from "@/hooks/use-toast";
 
 const DashboardSidebar = () => {
   const [activeSection, setActiveSection] = useState("apps");
   const [isAppsExpanded, setIsAppsExpanded] = useState(false);
-  const navigate = useNavigate();
   const location = useLocation();
+  const { signOut } = useClerk();
   const { toast } = useToast();
 
   const handleSignOut = async () => {
-    const { error } = await supabase.auth.signOut();
-    if (error) {
+    try {
+      await signOut();
+      toast({
+        title: "Signed out successfully",
+        description: "You have been signed out of your account.",
+      });
+    } catch (error) {
       toast({
         title: "Error signing out",
-        description: error.message,
+        description: "There was an error signing out. Please try again.",
         variant: "destructive",
       });
-    } else {
-      navigate("/");
     }
   };
 

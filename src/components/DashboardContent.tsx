@@ -1,17 +1,14 @@
 
 import React from "react";
-import { User } from "@supabase/supabase-js";
+import { useUser } from "@clerk/clerk-react";
 import { Sparkles, Zap, BookOpen, Lightbulb, Users } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
-interface DashboardContentProps {
-  user: User;
-}
-
-const DashboardContent = ({ user }: DashboardContentProps) => {
-  const userName = user.email?.split('@')[0] || "Friend";
+const DashboardContent = () => {
+  const { user } = useUser();
+  const userName = user?.firstName || user?.emailAddresses[0]?.emailAddress?.split('@')[0] || "Friend";
 
   return (
     <div className="flex-1 p-6">
