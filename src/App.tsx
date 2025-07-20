@@ -12,6 +12,10 @@ import BlogPost from "./pages/BlogPost";
 import TrackPage from "./pages/TrackPage";
 import CoursePage from "./pages/CoursePage";
 import AllApps from "./pages/AllApps";
+import EmailSummarizer from "./pages/apps/EmailSummarizer";
+import EmailGenerator from "./pages/apps/EmailGenerator";
+import Translator from "./pages/apps/Translator";
+import TextToSpeech from "./pages/apps/TextToSpeech";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,9 +32,13 @@ const App = () => (
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
-          <Route path="/track/:trackId" element={<CoursePage />} />
+          <Route path="/track/:trackId" element={<TrackPage />} />
+          <Route path="/track/:trackId/:lessonId" element={<CoursePage />} />
           <Route path="/apps" element={<AllApps />} />
-          <Route path="/apps/:appId" element={<AllApps />} />
+          <Route path="/apps/email-summarizer" element={<EmailSummarizer />} />
+          <Route path="/apps/email-generator" element={<EmailGenerator />} />
+          <Route path="/apps/translator" element={<Translator />} />
+          <Route path="/apps/text-to-speech" element={<TextToSpeech />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

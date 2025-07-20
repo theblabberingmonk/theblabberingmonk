@@ -35,10 +35,10 @@ const DashboardSidebar = () => {
   ];
 
   const apps = [
-    { id: "ai-chat", name: "AI Chat Assistant", icon: Bot },
-    { id: "text-analyzer", name: "Text Analyzer", icon: FileText },
-    { id: "prompt-optimizer", name: "Prompt Optimizer", icon: MessageSquare },
-    { id: "model-calculator", name: "Model Calculator", icon: Calculator },
+    { id: "email-summarizer", name: "AI Email Summarizer", icon: FileText },
+    { id: "email-generator", name: "Generate an Email", icon: MessageSquare },
+    { id: "translator", name: "AI Translator", icon: Bot },
+    { id: "text-to-speech", name: "AI Text to Speech", icon: Calculator },
   ];
 
   return (
