@@ -2,9 +2,12 @@ import React, { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Volume2, Play, Pause, Download } from "lucide-react";
+import { Volume2, Play, Pause, Download, ArrowLeft } from "lucide-react";
+import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import ApiKeyWarning from "@/components/ApiKeyWarning";
+import { useApiKeyStatus } from "@/hooks/useApiKeyStatus";
 
 const TextToSpeech = () => {
   const [text, setText] = useState("");
@@ -13,6 +16,7 @@ const TextToSpeech = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   const { toast } = useToast();
+  const { hasApiKey } = useApiKeyStatus();
 
   const handleGenerateSpeech = async () => {
     if (!text.trim()) {
@@ -76,6 +80,19 @@ const TextToSpeech = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-muted/50 p-6">
       <div className="max-w-4xl mx-auto space-y-6">
+        <div className="flex items-center justify-between mb-6">
+          <Link to="/dashboard">
+            <Button variant="outline" size="sm">
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Back to Dashboard
+            </Button>
+          </Link>
+        </div>
+
+        {!hasApiKey && (
+          <ApiKeyWarning onSetupKey={() => window.location.href = '/dashboard'} />
+        )}
+
         <div className="text-center">
           <div className="flex justify-center mb-4">
             <div className="bg-primary/10 p-3 rounded-full">

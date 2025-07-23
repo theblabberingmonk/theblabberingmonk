@@ -21,10 +21,26 @@ const SetupKeyPage = ({ onComplete }: SetupKeyPageProps) => {
   const [loading, setLoading] = useState(false);
 
   const providers = [
-    { value: "openai", label: "OpenAI (GPT-4, GPT-3.5)" },
-    { value: "anthropic", label: "Anthropic (Claude)" },
-    { value: "google", label: "Google (Gemini)" },
-    { value: "perplexity", label: "Perplexity" },
+    { 
+      value: "openai", 
+      label: "OpenAI (GPT-4, GPT-3.5)",
+      url: "https://help.openai.com/en/articles/4936850-where-do-i-find-my-openai-api-key"
+    },
+    { 
+      value: "anthropic", 
+      label: "Anthropic (Claude)",
+      url: "https://docs.anthropic.com/en/api/admin-api/apikeys/get-api-key"
+    },
+    { 
+      value: "google", 
+      label: "Google (Gemini)",
+      url: "https://ai.google.dev/gemini-api/docs/api-key"
+    },
+    { 
+      value: "perplexity", 
+      label: "Perplexity",
+      url: "https://www.perplexity.ai/help-center/en/articles/10352995-api-settings"
+    },
   ];
 
   const handleSaveKey = async () => {
@@ -76,6 +92,10 @@ const SetupKeyPage = ({ onComplete }: SetupKeyPageProps) => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleSkip = () => {
+    onComplete();
   };
 
   return (
@@ -160,19 +180,19 @@ const SetupKeyPage = ({ onComplete }: SetupKeyPageProps) => {
             )}
           </Button>
 
+          <Button
+            onClick={handleSkip}
+            variant="outline"
+            className="w-full"
+          >
+            Skip for now
+          </Button>
+
           <div className="text-center">
             <p className="text-xs text-muted-foreground">
               Don't have an API key?{" "}
               <a
-                href={
-                  provider === "openai"
-                    ? "https://platform.openai.com/api-keys"
-                    : provider === "anthropic"
-                    ? "https://console.anthropic.com/"
-                    : provider === "google"
-                    ? "https://aistudio.google.com/app/apikey"
-                    : "https://www.perplexity.ai/settings/api"
-                }
+                href={providers.find(p => p.value === provider)?.url || "https://help.openai.com/en/articles/4936850-where-do-i-find-my-openai-api-key"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-primary hover:underline"

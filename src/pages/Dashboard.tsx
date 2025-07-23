@@ -4,12 +4,14 @@ import { useUser, RedirectToSignIn } from "@clerk/clerk-react";
 import DashboardSidebar from "@/components/DashboardSidebar";
 import DashboardContent from "@/components/DashboardContent";
 import SetupKeyPage from "@/components/SetupKeyPage";
+import ApiKeyWarning from "@/components/ApiKeyWarning";
 import { supabase } from "@/integrations/supabase/client";
 
 const Dashboard = () => {
   const { isLoaded, isSignedIn, user } = useUser();
   const [apiKeysConfigured, setApiKeysConfigured] = useState(false);
   const [checkingKeys, setCheckingKeys] = useState(true);
+  const [showSetupPage, setShowSetupPage] = useState(false);
 
   useEffect(() => {
     const checkApiKeys = async () => {
@@ -50,14 +52,22 @@ const Dashboard = () => {
     return <RedirectToSignIn />;
   }
 
-  if (!apiKeysConfigured) {
-    return <SetupKeyPage onComplete={() => setApiKeysConfigured(true)} />;
+  if (showSetupPage) {
+    return <SetupKeyPage onComplete={() => {
+      setShowSetupPage(false);
+      setApiKeysConfigured(true);
+    }} />;
   }
 
   return (
     <div className="min-h-screen bg-gray-50 flex">
       <DashboardSidebar />
       <div className="flex-1 flex flex-col">
+        {!apiKeysConfigured && (
+          <div className="p-6">
+            <ApiKeyWarning onSetupKey={() => setShowSetupPage(true)} />
+          </div>
+        )}
         <DashboardContent />
       </div>
     </div>

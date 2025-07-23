@@ -3,9 +3,12 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Languages, ArrowRight } from "lucide-react";
+import { Languages, ArrowRight, ArrowLeft } from "lucide-react";
+import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import ApiKeyWarning from "@/components/ApiKeyWarning";
+import { useApiKeyStatus } from "@/hooks/useApiKeyStatus";
 
 const Translator = () => {
   const [sourceText, setSourceText] = useState("");
@@ -13,6 +16,7 @@ const Translator = () => {
   const [targetLanguage, setTargetLanguage] = useState("");
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
+  const { hasApiKey } = useApiKeyStatus();
 
   const languages = [
     { value: "spanish", label: "Spanish" },
@@ -88,6 +92,19 @@ const Translator = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-muted/50 p-6">
       <div className="max-w-4xl mx-auto space-y-6">
+        <div className="flex items-center justify-between mb-6">
+          <Link to="/dashboard">
+            <Button variant="outline" size="sm">
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Back to Dashboard
+            </Button>
+          </Link>
+        </div>
+
+        {!hasApiKey && (
+          <ApiKeyWarning onSetupKey={() => window.location.href = '/dashboard'} />
+        )}
+
         <div className="text-center">
           <div className="flex justify-center mb-4">
             <div className="bg-primary/10 p-3 rounded-full">

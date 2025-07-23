@@ -2,15 +2,19 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Mail, Sparkles } from "lucide-react";
+import { Mail, Sparkles, ArrowLeft } from "lucide-react";
+import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import ApiKeyWarning from "@/components/ApiKeyWarning";
+import { useApiKeyStatus } from "@/hooks/useApiKeyStatus";
 
 const EmailSummarizer = () => {
   const [email, setEmail] = useState("");
   const [summary, setSummary] = useState("");
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
+  const { hasApiKey } = useApiKeyStatus();
 
   const handleSummarize = async () => {
     if (!email.trim()) {
@@ -51,6 +55,19 @@ const EmailSummarizer = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-muted/50 p-6">
       <div className="max-w-4xl mx-auto space-y-6">
+        <div className="flex items-center justify-between mb-6">
+          <Link to="/dashboard">
+            <Button variant="outline" size="sm">
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Back to Dashboard
+            </Button>
+          </Link>
+        </div>
+
+        {!hasApiKey && (
+          <ApiKeyWarning onSetupKey={() => window.location.href = '/dashboard'} />
+        )}
+
         <div className="text-center">
           <div className="flex justify-center mb-4">
             <div className="bg-primary/10 p-3 rounded-full">
