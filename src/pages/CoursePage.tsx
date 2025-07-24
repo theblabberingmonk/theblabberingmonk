@@ -6,10 +6,21 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import DashboardSidebar from "@/components/DashboardSidebar";
+import { useUser } from "@clerk/clerk-react";
+import { Navigate } from "react-router-dom";
 
 const CoursePage = () => {
   const { trackId } = useParams();
+  const { user, isLoaded } = useUser();
   const [completedLessons, setCompletedLessons] = useState<string[]>([]);
+
+  if (!isLoaded) {
+    return <div>Loading...</div>;
+  }
+
+  if (!user) {
+    return <Navigate to="/auth" replace />;
+  }
 
   const courses = {
     fundamentals: {
