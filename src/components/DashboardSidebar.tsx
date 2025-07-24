@@ -128,9 +128,9 @@ const DashboardSidebar = () => {
             {learningTracks.map((track) => (
               <div key={track.id} className="space-y-1">
                 <Link
-                  to={`/track/${track.id}`}
+                  to={`/course/${track.id}`}
                   className={`w-full flex items-center px-3 py-2 text-sm font-medium rounded-md transition-colors ${
-                    location.pathname === `/track/${track.id}`
+                    location.pathname === `/course/${track.id}`
                       ? "bg-tbm-100 text-tbm-700"
                       : "text-gray-600 hover:bg-gray-50"
                   }`}
