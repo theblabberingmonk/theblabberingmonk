@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Brain, Grid3X3, BookOpen, LogOut, Settings, Lightbulb, Users, ChevronDown, ChevronRight, Bot, FileText, Calculator, MessageSquare } from "lucide-react";
-import { useClerk } from "@clerk/clerk-react";
+import { useClerk, useUser } from "@clerk/clerk-react";
 import { useToast } from "@/hooks/use-toast";
 
 const DashboardSidebar = () => {
@@ -10,6 +10,7 @@ const DashboardSidebar = () => {
   const [isAppsExpanded, setIsAppsExpanded] = useState(false);
   const location = useLocation();
   const { signOut } = useClerk();
+  const { user } = useUser();
   const { toast } = useToast();
 
   const handleSignOut = async () => {
@@ -29,14 +30,32 @@ const DashboardSidebar = () => {
   };
 
   const learningTracks = [
-    { id: "fundamentals", name: "LLM Fundamentals", progress: 25 },
-    { id: "data-scientist", name: "LLM Data Scientist", progress: 10 },
-    { id: "engineer", name: "LLM Engineer", progress: 0 },
+    { 
+      id: "fundamentals", 
+      name: "LLM Fundamentals", 
+      progress: 8, // 1 out of 12 lessons completed
+      totalLessons: 12,
+      completedLessons: 1
+    },
+    { 
+      id: "data-scientist", 
+      name: "LLM Data Scientist", 
+      progress: 7, // 1 out of 15 lessons completed
+      totalLessons: 15,
+      completedLessons: 1
+    },
+    { 
+      id: "engineer", 
+      name: "LLM Engineer", 
+      progress: 0, // 0 out of 18 lessons completed
+      totalLessons: 18,
+      completedLessons: 0
+    },
   ];
 
   const apps = [
     { id: "email-summarizer", name: "AI Email Summarizer", icon: FileText },
-    { id: "email-generator", name: "Generate an Email", icon: MessageSquare },
+    { id: "email-generator", name: "AI Email Generator", icon: MessageSquare },
     { id: "translator", name: "AI Translator", icon: Bot },
     { id: "text-to-speech", name: "AI Text to Speech", icon: Calculator },
   ];
@@ -56,21 +75,23 @@ const DashboardSidebar = () => {
             Apps
           </h3>
           <div className="space-y-1">
-            <button
-              onClick={() => {
-                setActiveSection("apps");
-                setIsAppsExpanded(!isAppsExpanded);
-              }}
-              className={`w-full flex items-center justify-between px-3 py-2 text-sm font-medium rounded-md transition-colors ${
-                activeSection === "apps"
+            <Link
+              to="/apps"
+              className={`w-full flex items-center px-3 py-2 text-sm font-medium rounded-md transition-colors ${
+                location.pathname === "/apps"
                   ? "bg-tbm-100 text-tbm-700"
                   : "text-gray-600 hover:bg-gray-50"
               }`}
             >
-              <div className="flex items-center">
-                <Grid3X3 className="mr-3 h-4 w-4" />
-                All Tools
-              </div>
+              <Grid3X3 className="mr-3 h-4 w-4" />
+              All Tools
+            </Link>
+            
+            <button
+              onClick={() => setIsAppsExpanded(!isAppsExpanded)}
+              className="w-full flex items-center justify-between px-3 py-2 text-sm font-medium rounded-md transition-colors text-gray-600 hover:bg-gray-50"
+            >
+              <span>Quick Access</span>
               {isAppsExpanded ? (
                 <ChevronDown className="h-4 w-4" />
               ) : (
@@ -84,7 +105,11 @@ const DashboardSidebar = () => {
                   <Link
                     key={app.id}
                     to={`/apps/${app.id}`}
-                    className="flex items-center px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded-md transition-colors"
+                    className={`flex items-center px-3 py-2 text-sm rounded-md transition-colors ${
+                      location.pathname === `/apps/${app.id}`
+                        ? "bg-tbm-100 text-tbm-700"
+                        : "text-gray-600 hover:bg-gray-50"
+                    }`}
                   >
                     <app.icon className="mr-3 h-4 w-4" />
                     {app.name}
@@ -105,7 +130,7 @@ const DashboardSidebar = () => {
                 <Link
                   to={`/track/${track.id}`}
                   className={`w-full flex items-center px-3 py-2 text-sm font-medium rounded-md transition-colors ${
-                    activeSection === `learning-${track.id}`
+                    location.pathname === `/track/${track.id}`
                       ? "bg-tbm-100 text-tbm-700"
                       : "text-gray-600 hover:bg-gray-50"
                   }`}
@@ -115,7 +140,7 @@ const DashboardSidebar = () => {
                 </Link>
                 <div className="px-3">
                   <div className="flex items-center justify-between text-xs text-gray-500 mb-1">
-                    <span>Progress</span>
+                    <span>{track.completedLessons}/{track.totalLessons} lessons</span>
                     <span>{track.progress}%</span>
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-1.5">
@@ -162,6 +187,11 @@ const DashboardSidebar = () => {
       </nav>
 
       <div className="p-4 border-t border-gray-200">
+        {user && (
+          <div className="mb-3 px-3 py-2 text-sm text-gray-600">
+            Signed in as {user.firstName || user.emailAddresses[0]?.emailAddress?.split('@')[0]}
+          </div>
+        )}
         <button
           onClick={handleSignOut}
           className="w-full flex items-center px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50 rounded-md transition-colors"

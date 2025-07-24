@@ -1,14 +1,19 @@
+
 import React from "react";
 import {
   SignedIn,
   SignedOut,
   SignInButton,
   SignUpButton,
+  SignOutButton,
+  useUser,
 } from "@clerk/clerk-react";
 import { Navigate, Link } from "react-router-dom";
-import { Brain, ArrowLeft } from "lucide-react";
+import { Brain, ArrowLeft, User } from "lucide-react";
 
 const Auth = () => {
+  const { user } = useUser();
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/20 via-background to-secondary/20 flex items-center justify-center p-4">
       <div className="max-w-md w-full">
@@ -52,7 +57,27 @@ const Auth = () => {
         </SignedOut>
         
         <SignedIn>
-          <Navigate to="/dashboard" replace />
+          <div className="bg-card rounded-lg shadow-xl p-8 border text-center">
+            <div className="flex items-center justify-center mb-6">
+              <User className="h-12 w-12 text-primary" />
+            </div>
+            <h1 className="text-2xl font-bold text-foreground mb-4">
+              Welcome back, {user?.firstName || user?.emailAddresses[0]?.emailAddress?.split('@')[0]}!
+            </h1>
+            <p className="text-muted-foreground mb-6">
+              You're already signed in to TBM Labs
+            </p>
+            <div className="space-y-4">
+              <Link to="/dashboard" className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-medium py-3 px-4 rounded-md transition-colors block">
+                Go to Dashboard
+              </Link>
+              <SignOutButton>
+                <button className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 font-medium py-3 px-4 rounded-md transition-colors">
+                  Sign Out
+                </button>
+              </SignOutButton>
+            </div>
+          </div>
         </SignedIn>
       </div>
     </div>

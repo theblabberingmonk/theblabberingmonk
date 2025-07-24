@@ -14,47 +14,74 @@ const CoursePage = () => {
   const courses = {
     fundamentals: {
       title: "LLM Fundamentals",
-      description: "Master the basics of Large Language Models",
+      description: "Master the core concepts of Large Language Models from the ground up. Learn about tokenization, embeddings, attention mechanisms, and transformer architecture.",
       duration: "4 weeks",
       students: "2.1k",
-      progress: 25,
+      progress: 8,
       lessons: [
-        { id: "1", title: "Introduction to LLMs", duration: "45 min", completed: true },
-        { id: "2", title: "How Transformers Work", duration: "60 min", completed: true },
-        { id: "3", title: "Training Data & Preprocessing", duration: "50 min", completed: false },
-        { id: "4", title: "Fine-tuning Basics", duration: "70 min", completed: false },
-        { id: "5", title: "Prompt Engineering", duration: "55 min", completed: false },
-        { id: "6", title: "Evaluation Metrics", duration: "40 min", completed: false },
+        { id: "1", title: "Introduction to Language Models", duration: "45 min", completed: true, description: "Understanding what language models are and their evolution" },
+        { id: "2", title: "Tokenization and Vocabularies", duration: "50 min", completed: false, description: "How text is broken down into tokens and vocabulary creation" },
+        { id: "3", title: "Word Embeddings and Vector Spaces", duration: "55 min", completed: false, description: "Understanding how words are represented as vectors" },
+        { id: "4", title: "Attention Mechanisms", duration: "60 min", completed: false, description: "The key innovation that powers modern language models" },
+        { id: "5", title: "Transformer Architecture", duration: "70 min", completed: false, description: "Deep dive into the architecture that changed everything" },
+        { id: "6", title: "Pre-training vs Fine-tuning", duration: "45 min", completed: false, description: "Understanding the two-stage training process" },
+        { id: "7", title: "Prompt Engineering Basics", duration: "50 min", completed: false, description: "Learning to communicate effectively with language models" },
+        { id: "8", title: "Few-shot and Zero-shot Learning", duration: "45 min", completed: false, description: "Making models perform tasks without specific training" },
+        { id: "9", title: "Model Evaluation and Metrics", duration: "55 min", completed: false, description: "How to measure language model performance" },
+        { id: "10", title: "Common LLM Architectures", duration: "60 min", completed: false, description: "Overview of popular model architectures" },
+        { id: "11", title: "Limitations and Biases", duration: "40 min", completed: false, description: "Understanding the challenges and ethical considerations" },
+        { id: "12", title: "Future of Language Models", duration: "35 min", completed: false, description: "Emerging trends and future directions" },
       ]
     },
     "data-scientist": {
       title: "LLM Data Scientist",
-      description: "Advanced techniques for data scientists working with LLMs",
+      description: "Advanced techniques for data scientists working with LLMs. Learn data collection, preprocessing, evaluation, and analysis for language model applications.",
       duration: "6 weeks",
       students: "856",
-      progress: 10,
+      progress: 7,
       lessons: [
-        { id: "1", title: "Data Collection for LLMs", duration: "60 min", completed: true },
-        { id: "2", title: "Feature Engineering", duration: "75 min", completed: false },
-        { id: "3", title: "Model Selection & Comparison", duration: "65 min", completed: false },
-        { id: "4", title: "Advanced Fine-tuning", duration: "90 min", completed: false },
-        { id: "5", title: "Performance Optimization", duration: "80 min", completed: false },
-        { id: "6", title: "Production Deployment", duration: "85 min", completed: false },
+        { id: "1", title: "Data Collection for LLMs", duration: "60 min", completed: true, description: "Strategies for gathering high-quality training data" },
+        { id: "2", title: "Text Preprocessing and Cleaning", duration: "65 min", completed: false, description: "Cleaning and preparing text data for model training" },
+        { id: "3", title: "Dataset Quality Assessment", duration: "55 min", completed: false, description: "Methods to evaluate and improve dataset quality" },
+        { id: "4", title: "Tokenization Strategies", duration: "50 min", completed: false, description: "Advanced tokenization techniques and their impact" },
+        { id: "5", title: "Creating Training Datasets", duration: "70 min", completed: false, description: "Building datasets optimized for specific tasks" },
+        { id: "6", title: "Data Augmentation Techniques", duration: "60 min", completed: false, description: "Expanding datasets through augmentation methods" },
+        { id: "7", title: "Evaluation Dataset Design", duration: "55 min", completed: false, description: "Designing robust evaluation benchmarks" },
+        { id: "8", title: "Fine-tuning Data Preparation", duration: "65 min", completed: false, description: "Preparing data for domain-specific fine-tuning" },
+        { id: "9", title: "Domain-Specific Data Curation", duration: "70 min", completed: false, description: "Curating data for specialized domains" },
+        { id: "10", title: "Data Privacy and Ethics", duration: "45 min", completed: false, description: "Ethical considerations in data collection and use" },
+        { id: "11", title: "Monitoring Data Drift", duration: "50 min", completed: false, description: "Detecting and handling changes in data distribution" },
+        { id: "12", title: "Scaling Data Pipelines", duration: "75 min", completed: false, description: "Building scalable data processing workflows" },
+        { id: "13", title: "Advanced Data Analysis", duration: "80 min", completed: false, description: "Statistical analysis and insights from language data" },
+        { id: "14", title: "Dataset Versioning", duration: "40 min", completed: false, description: "Managing dataset versions and reproducibility" },
+        { id: "15", title: "Bias Detection and Mitigation", duration: "65 min", completed: false, description: "Identifying and addressing bias in datasets" },
       ]
     },
     engineer: {
       title: "LLM Engineer",
-      description: "Build and deploy LLM applications in production",
+      description: "Build production-ready LLM applications and systems. Learn system architecture, deployment, scaling, and best practices for LLM engineering.",
       duration: "8 weeks",
       students: "1.3k",
       progress: 0,
       lessons: [
-        { id: "1", title: "System Architecture", duration: "90 min", completed: false },
-        { id: "2", title: "API Design & Development", duration: "100 min", completed: false },
-        { id: "3", title: "Scaling & Load Balancing", duration: "85 min", completed: false },
-        { id: "4", title: "Security & Privacy", duration: "75 min", completed: false },
-        { id: "5", title: "Monitoring & Logging", duration: "70 min", completed: false },
-        { id: "6", title: "CI/CD for ML Models", duration: "95 min", completed: false },
+        { id: "1", title: "Production LLM Architecture", duration: "90 min", completed: false, description: "Designing scalable architectures for LLM applications" },
+        { id: "2", title: "API Design for LLM Services", duration: "85 min", completed: false, description: "Building robust APIs for language model services" },
+        { id: "3", title: "LangChain Framework", duration: "100 min", completed: false, description: "Using LangChain for rapid LLM application development" },
+        { id: "4", title: "Vector Databases and Embeddings", duration: "95 min", completed: false, description: "Implementing semantic search and similarity matching" },
+        { id: "5", title: "Building RAG Systems", duration: "110 min", completed: false, description: "Retrieval-Augmented Generation for knowledge-enhanced models" },
+        { id: "6", title: "AI Agent Development", duration: "105 min", completed: false, description: "Creating autonomous AI agents with LLMs" },
+        { id: "7", title: "Model Serving and Deployment", duration: "90 min", completed: false, description: "Deploying models to production environments" },
+        { id: "8", title: "Scaling LLM Applications", duration: "100 min", completed: false, description: "Handling high-traffic and large-scale deployments" },
+        { id: "9", title: "Performance Optimization", duration: "95 min", completed: false, description: "Optimizing inference speed and resource usage" },
+        { id: "10", title: "Monitoring and Observability", duration: "80 min", completed: false, description: "Implementing comprehensive monitoring systems" },
+        { id: "11", title: "Security Best Practices", duration: "85 min", completed: false, description: "Securing LLM applications and user data" },
+        { id: "12", title: "Cost Optimization Strategies", duration: "75 min", completed: false, description: "Minimizing operational costs while maintaining performance" },
+        { id: "13", title: "Multi-modal AI Systems", duration: "120 min", completed: false, description: "Integrating text, image, and audio processing" },
+        { id: "14", title: "Testing LLM Applications", duration: "90 min", completed: false, description: "Comprehensive testing strategies for AI systems" },
+        { id: "15", title: "CI/CD for AI Systems", duration: "85 min", completed: false, description: "Continuous integration and deployment for ML models" },
+        { id: "16", title: "Advanced Prompt Engineering", duration: "100 min", completed: false, description: "Sophisticated prompting techniques for complex tasks" },
+        { id: "17", title: "Custom Model Integration", duration: "110 min", completed: false, description: "Integrating custom and fine-tuned models" },
+        { id: "18", title: "Production Troubleshooting", duration: "80 min", completed: false, description: "Debugging and resolving production issues" },
       ]
     }
   };
@@ -146,6 +173,9 @@ const CoursePage = () => {
                       </Button>
                     </div>
                   </div>
+                  <CardDescription className="ml-8 mt-2">
+                    {lesson.description}
+                  </CardDescription>
                 </CardHeader>
               </Card>
             ))}

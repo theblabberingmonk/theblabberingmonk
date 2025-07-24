@@ -8,29 +8,35 @@ const TrackPreview = () => {
     {
       id: "fundamentals",
       title: "LLM Fundamentals",
-      description: "Learn the basics of Large Language Models, tokenization, embeddings, and prompt design",
+      description: "Master the core concepts of Large Language Models including tokenization, embeddings, attention mechanisms, and transformer architecture. Perfect for beginners.",
       icon: BookOpen,
       level: "Beginner",
       lessons: 12,
-      color: "from-blue-500 to-blue-600"
+      duration: "4 weeks",
+      color: "from-blue-500 to-blue-600",
+      skills: ["Tokenization", "Embeddings", "Attention", "Transformers", "Prompt Engineering"]
     },
     {
       id: "data-scientist",
       title: "LLM Data Scientist",
-      description: "Build and analyze datasets for training and fine-tuning language models",
+      description: "Advanced data science techniques for LLMs including data collection, preprocessing, evaluation, bias detection, and dataset optimization.",
       icon: Database,
       level: "Intermediate",
       lessons: 15,
-      color: "from-purple-500 to-purple-600"
+      duration: "6 weeks",
+      color: "from-purple-500 to-purple-600",
+      skills: ["Data Collection", "Preprocessing", "Evaluation", "Bias Detection", "Dataset Design"]
     },
     {
       id: "engineer",
       title: "LLM Engineer",
-      description: "Build production-level AI applications, agents, and tools with modern frameworks",
+      description: "Build production-ready LLM applications with system architecture, deployment, scaling, RAG systems, and AI agent development.",
       icon: Code,
       level: "Advanced",
       lessons: 18,
-      color: "from-green-500 to-green-600"
+      duration: "8 weeks",
+      color: "from-green-500 to-green-600",
+      skills: ["System Architecture", "API Design", "RAG Systems", "AI Agents", "Production Deployment"]
     }
   ];
 
@@ -56,7 +62,7 @@ const TrackPreview = () => {
               to={`/track/${track.id}`}
               className="group block"
             >
-              <div className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-200 hover:border-tbm-300">
+              <div className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-200 hover:border-tbm-300 h-full">
                 <div className={`h-24 bg-gradient-to-r ${track.color} relative`}>
                   <div className="absolute inset-0 bg-black/10"></div>
                   <div className="absolute bottom-4 left-6">
@@ -70,7 +76,7 @@ const TrackPreview = () => {
                       {track.level}
                     </span>
                     <span className="text-xs text-gray-500">
-                      {track.lessons} lessons
+                      {track.lessons} lessons • {track.duration}
                     </span>
                   </div>
                   
@@ -81,6 +87,22 @@ const TrackPreview = () => {
                   <p className="text-gray-600 text-sm leading-relaxed mb-4">
                     {track.description}
                   </p>
+                  
+                  <div className="mb-4">
+                    <p className="text-xs font-medium text-gray-500 mb-2">Key Skills:</p>
+                    <div className="flex flex-wrap gap-1">
+                      {track.skills.slice(0, 3).map((skill, idx) => (
+                        <span key={idx} className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">
+                          {skill}
+                        </span>
+                      ))}
+                      {track.skills.length > 3 && (
+                        <span className="text-xs text-gray-500">
+                          +{track.skills.length - 3} more
+                        </span>
+                      )}
+                    </div>
+                  </div>
                   
                   <div className="flex items-center text-tbm-500 text-sm font-medium group-hover:text-tbm-600 transition-colors">
                     Start Learning

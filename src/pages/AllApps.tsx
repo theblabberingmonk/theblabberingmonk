@@ -3,41 +3,46 @@ import React from "react";
 import { Bot, FileText, Calculator, MessageSquare, Zap, Brain, Code, Image } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import DashboardSidebar from "@/components/DashboardSidebar";
 
 const AllApps = () => {
   const apps = [
     {
-      id: "ai-chat",
-      name: "AI Chat Assistant",
-      description: "Have intelligent conversations with our advanced AI assistant. Perfect for brainstorming, learning, and problem-solving.",
-      icon: Bot,
-      category: "Conversational AI",
-      comingSoon: false
-    },
-    {
-      id: "text-analyzer",
-      name: "Text Analyzer",
-      description: "Analyze sentiment, extract keywords, and get insights from any text. Great for content analysis and research.",
+      id: "email-summarizer",
+      name: "AI Email Summarizer",
+      description: "Paste emails and get concise, actionable summaries instantly.",
       icon: FileText,
-      category: "Text Processing",
-      comingSoon: false
+      category: "Productivity",
+      comingSoon: false,
+      path: "/apps/email-summarizer"
     },
     {
-      id: "prompt-optimizer",
-      name: "Prompt Optimizer",
-      description: "Craft better prompts for AI models. Get suggestions to improve your prompts and achieve better results.",
+      id: "email-generator",
+      name: "AI Email Generator",
+      description: "Generate professional emails with AI assistance for any purpose.",
       icon: MessageSquare,
-      category: "AI Tools",
-      comingSoon: false
+      category: "Productivity",
+      comingSoon: false,
+      path: "/apps/email-generator"
     },
     {
-      id: "model-calculator",
-      name: "Model Calculator",
-      description: "Calculate costs, tokens, and performance metrics for different AI models. Plan your AI usage effectively.",
+      id: "translator",
+      name: "AI Translator",
+      description: "Translate text between languages using advanced AI models.",
+      icon: Bot,
+      category: "Language",
+      comingSoon: false,
+      path: "/apps/translator"
+    },
+    {
+      id: "text-to-speech",
+      name: "AI Text to Speech",
+      description: "Convert text to natural-sounding speech with AI voice generation.",
       icon: Calculator,
-      category: "Utilities",
-      comingSoon: false
+      category: "Audio",
+      comingSoon: false,
+      path: "/apps/text-to-speech"
     },
     {
       id: "code-generator",
@@ -116,13 +121,21 @@ const AllApps = () => {
                       </CardDescription>
                     </CardHeader>
                     <CardContent>
-                      <Button 
-                        className="w-full" 
-                        disabled={app.comingSoon}
-                        variant={app.comingSoon ? "outline" : "default"}
-                      >
-                        {app.comingSoon ? "Coming Soon" : "Launch App"}
-                      </Button>
+                      {app.comingSoon ? (
+                        <Button 
+                          className="w-full" 
+                          disabled
+                          variant="outline"
+                        >
+                          Coming Soon
+                        </Button>
+                      ) : (
+                        <Link to={app.path}>
+                          <Button className="w-full">
+                            Launch App
+                          </Button>
+                        </Link>
+                      )}
                     </CardContent>
                   </Card>
                 ))}
