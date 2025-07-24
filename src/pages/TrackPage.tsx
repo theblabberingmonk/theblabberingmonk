@@ -225,9 +225,9 @@ const TrackPage = () => {
               <p className="text-gray-600 mb-6">
                 Ready to start your learning journey?
               </p>
-              <button className="button-primary">
-                Start First Lesson
-              </button>
+              <Link to={`/course/${trackId}`} className="button-primary">
+                Start Course
+              </Link>
             </div>
           </div>
         </section>
