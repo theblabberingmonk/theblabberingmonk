@@ -96,11 +96,11 @@ const Blog = () => {
             
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
               {tracks.map((track) => (
-                <Link
-                  key={track.id}
-                  to={`/track/${track.id}`}
-                  className="group block"
-                >
+              <Link
+                key={track.id}
+                to={`/course/${track.id}`}
+                className="group block"
+              >
                   <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200 hover:border-tbm-300 h-full">
                     <div className={`h-32 bg-gradient-to-r ${track.color} relative`}>
                       <div className="absolute inset-0 bg-black/10"></div>

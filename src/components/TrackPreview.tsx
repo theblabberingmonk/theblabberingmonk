@@ -59,7 +59,7 @@ const TrackPreview = () => {
           {tracks.map((track, index) => (
             <Link
               key={track.id}
-              to={`/track/${track.id}`}
+              to={`/course/${track.id}`}
               className="group block"
             >
               <div className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-200 hover:border-tbm-300 h-full">

@@ -58,7 +58,7 @@ const DashboardContent = () => {
             <p className="mb-4">
               From fundamentals to advanced engineering - we've got learning paths for every level!
             </p>
-            <Link to="/track/fundamentals">
+            <Link to="/course/fundamentals">
               <Button variant="secondary" className="bg-white text-purple-600 hover:bg-gray-100">
                 Start Learning
               </Button>

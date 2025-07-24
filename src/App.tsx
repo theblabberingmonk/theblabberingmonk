@@ -9,7 +9,7 @@ import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
-import TrackPage from "./pages/TrackPage";
+
 import CoursePage from "./pages/CoursePage";
 import AllApps from "./pages/AllApps";
 import EmailSummarizer from "./pages/apps/EmailSummarizer";
@@ -32,7 +32,7 @@ const App = () => (
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
-          <Route path="/track/:trackId" element={<TrackPage />} />
+          
           <Route path="/course/:trackId" element={<CoursePage />} />
           <Route path="/apps" element={<AllApps />} />
           <Route path="/apps/email-summarizer" element={<EmailSummarizer />} />
